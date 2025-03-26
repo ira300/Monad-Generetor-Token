@@ -1,6 +1,6 @@
-# Monad flavored Hardhat starter
+# Monad Flavored Hardhat Launcher
 
-This project demonstrates a basic Hardhat use case optimized for Monad. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
+This project demonstrates a use case for generating tokens on the Monad network from Hardhat Optimize.
 
 ## Project Structure
 
