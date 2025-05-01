@@ -1,22 +1,22 @@
 const hre = require("hardhat");
 
 async function main() {
-    console.log("🚀 Iniciando o deploy do TokenFactory...");
+  const [deployer] = await hre.ethers.getSigners();
+  console.log("Deploying contracts with the account:", deployer.address);
 
-    const TokenFactory = await hre.ethers.getContractFactory("TokenFactory");
-    console.log("📌 TokenFactory carregado com sucesso.");
+  const Paywall = await hre.ethers.getContractFactory("GameAccessPaywall");
 
-    const tokenFactory = await TokenFactory.deploy();
-    console.log("📌 Deploy iniciado...");
+  const fee = hre.ethers.parseEther("0.005"); 
+  const paywall = await Paywall.deploy(fee);
 
-    await tokenFactory.waitForDeployment(); 
+  await paywall.waitForDeployment();
 
-    const contractAddress = await tokenFactory.getAddress(); // ✅ Correção aqui!
-    console.log("✅ TokenFactory deployado em:", contractAddress);
+  const address = await paywall.getAddress();
+  console.log("✅ GameAccessPaywall deployed to:", address);
 }
 
 main().catch((error) => {
-    console.error("❌ Erro no deploy:", error);
-    process.exitCode = 1;
+  console.error(error);
+  process.exitCode = 1;
 });
 

@@ -1,20 +1,52 @@
 import "@nomicfoundation/hardhat-ethers";
 import type { HardhatUserConfig } from "hardhat/config";
-import "@nomicfoundation/hardhat-toolbox-viem";
-import "@nomicfoundation/hardhat-ignition-viem";
 import "dotenv/config";
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.28",
-    settings: {
-      metadata: {
-        bytecodeHash: "none", // disable ipfs
-        useLiteralContent: true, // use source code
+    compilers: [
+      {
+        version: "0.8.19",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+          metadata: {
+            bytecodeHash: "none",
+            useLiteralContent: true,
+          },
+        },
       },
-    },
+      {
+        version: "0.8.28",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+          metadata: {
+            bytecodeHash: "none",
+            useLiteralContent: true,
+          },
+        },
+      },
+      {
+        version: "0.8.20",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+          metadata: {
+            bytecodeHash: "none",
+            useLiteralContent: true,
+          },
+        },
+      },
+    ],
   },
   networks: {
     monadTestnet: {
@@ -28,11 +60,9 @@ const config: HardhatUserConfig = {
     apiUrl: "https://sourcify-api-monad.blockvision.org",
     browserUrl: "https://testnet.monadexplorer.com",
   },
-  // To avoid errors from Etherscan
   etherscan: {
     enabled: false,
   },
 };
 
 export default config;
-
