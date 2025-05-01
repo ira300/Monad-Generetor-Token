@@ -12,15 +12,12 @@
     "@nomicfoundation/hardhat-ignition-viem": "^0.15.10",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "@nomicfoundation/hardhat-toolbox-viem": "^3.0.0",
-    "@nomiclabs/hardhat-etherscan": "^3.1.8",
     "hardhat": "^2.22.19"
   },
   "dependencies": {
     "@nomicfoundation/hardhat-ethers": "^3.0.8",
     "@openzeppelin/contracts": "^5.2.0",
-    "axios": "^1.8.4",
     "dotenv": "^16.4.7",
-    "ethers": "^6.13.5",
-    "form-data": "^4.0.2"
+    "ethers": "^6.13.5"
   }
 }
