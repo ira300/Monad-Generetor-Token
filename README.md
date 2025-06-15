@@ -34,6 +34,7 @@ hardhat-monad/
 2. Install dependencies:
    ```bash
    npm install
+   npm install @nomicfoundation/hardhat-toolbox
    ```
 
 3. Create a `.env` file based on `.env.example`:
