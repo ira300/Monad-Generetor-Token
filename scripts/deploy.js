@@ -1,22 +1,30 @@
+const readline = require("readline");
 const hre = require("hardhat");
 
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
 async function main() {
-    console.log("🚀 Iniciando o deploy do TokenFactory...");
-
-    const TokenFactory = await hre.ethers.getContractFactory("ContractTokenGerenation");
-    console.log("📌 TokenFactory carregado com sucesso.");
-
-    const tokenFactory = await TokenFactory.deploy();
-    console.log("📌 Deploy iniciado...");
-
-    await tokenFactory.waitForDeployment(); 
-
-    const contractAddress = await tokenFactory.getAddress(); // fix
-    console.log("✅ TokenFactory deployado em:", contractAddress);
+  rl.question("What is the name of your token? ", async (name) => {
+    rl.question("What is the symbol of your token? ", async (symbol) => {
+      rl.question("What is the initial supply? ", async (initialSupply) => {
+        console.log("Iniciando o deploy...");
+        const TokenFactory = await hre.ethers.getContractFactory("TokenFactory");
+        const tokenFactory = await TokenFactory.deploy();
+        console.log("TokenFactory deployed on:", tokenFactory.address);
+        const tx = await tokenFactory.createToken(name, symbol, initialSupply);
+        await tx.wait();
+        console.log("Token generated successfully!!");
+        rl.close();
+      });
+    });
+  });
 }
 
 main().catch((error) => {
-    console.error("❌ Erro no deploy:", error);
-    process.exitCode = 1;
+  console.error(error);
+  process.exitCode = 1;
 });
 
